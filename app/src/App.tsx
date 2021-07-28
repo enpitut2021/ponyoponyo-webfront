@@ -1,7 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {Todo} from "./components/Todo";
 
 
 const Toppage = () => {
@@ -27,16 +28,22 @@ const Toppage = () => {
 const PublicPage = () => {
     return (
         <div className="name-page">
-            public page
+            <h1>public page</h1>
+            <Todo task={"hogehoge"} is_finished={false}/>
+            <Todo task={"hogehoge"} is_finished={false}/>
+            <Todo task={"hogehoge"} is_finished={false}/>
+            <Todo task={"hogehoge"} is_finished={false}/>
+            <Todo task={"hogehoge"} is_finished={false}/>
         </div>
     );
 }
 
-
 const TodoPage = () => {
     return (
         <div>
-            This is todo page!
+            <h1>
+                This is todo page!
+            </h1>
         </div>
     )
 }
