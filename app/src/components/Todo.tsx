@@ -2,6 +2,7 @@ interface OwnProps {
     task: string
     is_finished: boolean
 }
+
 type Props = OwnProps
 export const Todo: React.FC<Props> = props => {
     return (
