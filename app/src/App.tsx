@@ -4,6 +4,8 @@ import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Todo} from "./components/Todo";
 import {Ashamed} from "./components/Ashamed";
+import {useDispatch, useSelector} from "react-redux";
+import taskSlice, {TaskState} from "./state/Task";
 
 const Toppage = () => {
     return (
@@ -33,29 +35,25 @@ const PublicPage = () => {
             <Ashamed message={"私は昨日、舌を噛みました"}/>
             <Ashamed message={"私は昨日、足を切りました"}/>
             <Ashamed message={"私は昨日、髪の毛が無くなりました"}/>
-            <Ashamed message={"私は昨日、舌を噛みました"}/>
-            <Ashamed message={"私は昨日、舌を噛みました"}/>
-            <Ashamed message={"私は昨日、舌を噛みました"}/>
-            <Ashamed message={"私は昨日、舌を噛みました"}/>
-            <Ashamed message={"私は昨日、舌を噛みました"}/>
-            <Ashamed message={"私は昨日、舌を噛みました"}/>
-            <Ashamed message={"私は昨日、舌を噛みました"}/>
-            <Ashamed message={"私は昨日、舌を噛みました"}/>
         </div>
     );
 }
 
 const TodoPage = () => {
+    //ストアを呼んでくる
+
+    const dispatch = useDispatch()
+    const taskState = useSelector((state: { taskState: TaskState }) => state).taskState
+
     return (
         <div>
             <h1>
                 This is todo page!
             </h1>
-            <Todo task={"hogehoge"} is_finished={false}/>
-            <Todo task={"hogehoge"} is_finished={false}/>
-            <Todo task={"hogehoge"} is_finished={false}/>
-            <Todo task={"hogehoge"} is_finished={false}/>
-            <Todo task={"hogehoge"} is_finished={false}/>
+            {/*ストアの値と紐付ける*/}
+            <Todo task={taskState.task} is_finished={taskState.is_finished} onChange={() => {
+                dispatch(taskSlice.actions.notifyChangeTaskState(!taskState.is_finished))
+            }}/>
         </div>
     )
 }
