@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Todo} from "./components/Todo";
-
+import {Ashamed} from "./components/Ashamed";
 
 const Toppage = () => {
     return (
@@ -25,15 +25,22 @@ const Toppage = () => {
         </div>
     )
 }
+
 const PublicPage = () => {
     return (
         <div className="name-page">
-            <h1>public page</h1>
-            <Todo task={"hogehoge"} is_finished={false}/>
-            <Todo task={"hogehoge"} is_finished={false}/>
-            <Todo task={"hogehoge"} is_finished={false}/>
-            <Todo task={"hogehoge"} is_finished={false}/>
-            <Todo task={"hogehoge"} is_finished={false}/>
+            <h1>タスクが終わらなかった人達の恥ずかしエピソード</h1>
+            <Ashamed message={"私は昨日、舌を噛みました"}/>
+            <Ashamed message={"私は昨日、足を切りました"}/>
+            <Ashamed message={"私は昨日、髪の毛が無くなりました"}/>
+            <Ashamed message={"私は昨日、舌を噛みました"}/>
+            <Ashamed message={"私は昨日、舌を噛みました"}/>
+            <Ashamed message={"私は昨日、舌を噛みました"}/>
+            <Ashamed message={"私は昨日、舌を噛みました"}/>
+            <Ashamed message={"私は昨日、舌を噛みました"}/>
+            <Ashamed message={"私は昨日、舌を噛みました"}/>
+            <Ashamed message={"私は昨日、舌を噛みました"}/>
+            <Ashamed message={"私は昨日、舌を噛みました"}/>
         </div>
     );
 }
@@ -44,6 +51,11 @@ const TodoPage = () => {
             <h1>
                 This is todo page!
             </h1>
+            <Todo task={"hogehoge"} is_finished={false}/>
+            <Todo task={"hogehoge"} is_finished={false}/>
+            <Todo task={"hogehoge"} is_finished={false}/>
+            <Todo task={"hogehoge"} is_finished={false}/>
+            <Todo task={"hogehoge"} is_finished={false}/>
         </div>
     )
 }
