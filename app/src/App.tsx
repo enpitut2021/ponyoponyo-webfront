@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Todo} from "./components/Todo";
 import {Ashamed} from "./components/Ashamed";
 import {useDispatch, useSelector} from "react-redux";
-import taskSlice, {TaskState} from "./state/Task";
+import taskSlice, {Task, TaskState} from "./state/Task";
 import { Form } from './components/Form';
 
 const Toppage = () => {
@@ -56,10 +56,17 @@ const TodoPage = () => {
                 dispatch(taskSlice.actions.notifyChangeInputValue(a))
                 console.log(a)
             }} onClick={()=>{}}/>
-                        {/*ストアの値と紐付ける*/}
-            <Todo task={taskState.task} is_finished={taskState.is_finished} onChange={() => {
-                dispatch(taskSlice.actions.notifyChangeTaskState(!taskState.is_finished))
-            }}/>
+                        {
+                                        taskState.tasks.map(
+                                            (value:Task,index:number)=>{
+                                                return (
+                                                    <Todo task={value.task} is_finished={value.is_finished} onChange={() => {
+                                                        dispatch(taskSlice.actions.notifyChangeTaskState(!value.is_finished))
+                                                    }}/>
+                                                )
+                                            }
+                                        )                                
+                        }
         </div>
     )
 }
