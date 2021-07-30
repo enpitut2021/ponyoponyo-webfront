@@ -39,7 +39,11 @@ const taskSlice = createSlice({
          }), 
         notifyChangeInputValue: (state, action: PayloadAction<string>) => ({
             ...state, input_value: action.payload
+         }),
+        notifyAddNewTask: (state, action: PayloadAction<Task>) => ({
+            ...state, tasks: [...state.tasks, action.payload]
         })
+
     }
 })
 
