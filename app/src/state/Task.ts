@@ -10,18 +10,18 @@ export type Task = {
 
 //モデル
 export type TaskState = {
-    task: string,
-    deadline: string,
-    is_finished: boolean,
+    tasks:Task[]
     input_value: string,
 }
 
 //モデルの初期値
 export const initialState: TaskState = {
-    task: "数学のレポートを滅する",
-    is_finished: false,
-    deadline: "2021/7/28",
-    input_value: "",
+    tasks:[{
+        task: "数学のレポートを滅する",
+        is_finished: false,
+        deadline: "2021/7/28"
+    }],
+    input_value:""
 }
 
 //モデルから値の保存場所（State）を作る
