@@ -51,7 +51,11 @@ const TodoPage = () => {
             <h1>
                 This is todo page!
             </h1>
-            <Form InputValue={taskState.input_value} onChangeValue={(e : React.ChangeEvent<HTMLInputElement>)=>{}} onClick={()=>{}}/>
+            <Form InputValue={taskState.input_value} onChangeValue={(e : React.ChangeEvent<HTMLInputElement>)=>{
+                let a = e.target.value
+                dispatch(taskSlice.actions.notifyChangeInputValue(a))
+                console.log(a)
+            }} onClick={()=>{}}/>
                         {/*ストアの値と紐付ける*/}
             <Todo task={taskState.task} is_finished={taskState.is_finished} onChange={() => {
                 dispatch(taskSlice.actions.notifyChangeTaskState(!taskState.is_finished))
