@@ -3,7 +3,7 @@ import React, {ChangeEvent} from "react";
 
 interface OwnProps {
     InputValue: string
-    onChangeValue(event: ChangeEvent): void;
+    onChangeValue(event: React.ChangeEvent<HTMLInputElement>): void;
     onClick(): void;
 }
 
