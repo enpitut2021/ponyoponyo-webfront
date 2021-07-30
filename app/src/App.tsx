@@ -6,6 +6,7 @@ import {Todo} from "./components/Todo";
 import {Ashamed} from "./components/Ashamed";
 import {useDispatch, useSelector} from "react-redux";
 import taskSlice, {TaskState} from "./state/Task";
+import { Form } from './components/Form';
 
 const Toppage = () => {
     return (
@@ -50,7 +51,8 @@ const TodoPage = () => {
             <h1>
                 This is todo page!
             </h1>
-            {/*ストアの値と紐付ける*/}
+            <Form InputValue={""} onChangeValue={()=>{}} onClick={()=>{}}/>
+                        {/*ストアの値と紐付ける*/}
             <Todo task={taskState.task} is_finished={taskState.is_finished} onChange={() => {
                 dispatch(taskSlice.actions.notifyChangeTaskState(!taskState.is_finished))
             }}/>
