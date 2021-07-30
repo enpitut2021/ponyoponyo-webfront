@@ -55,7 +55,18 @@ const TodoPage = () => {
                 let a = e.target.value
                 dispatch(taskSlice.actions.notifyChangeInputValue(a))
                 console.log(a)
-            }} onClick={()=>{}}/>
+            }} onClick={()=>{
+                if(taskState.input_value.length!==0
+                    ){
+                let p :Task= {
+                    task: taskState.input_value,
+                    is_finished: false,
+                    deadline: "2021/7/28"
+                }
+                dispatch(taskSlice.actions.notifyAddNewTask(p))
+                dispatch(taskSlice.actions.notifyChangeInputValue(""))}
+
+            }}/>
                         {
                                         taskState.tasks.map(
                                             (value:Task,index:number)=>{
