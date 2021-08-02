@@ -21,19 +21,19 @@ export const initialState: TaskState = {
         task: "数学のレポートを滅する",
         is_finished: true,
         deadline: "2021/7/28"
-    },{
+    }, {
         task: "数学のレポートを滅する",
         is_finished: true,
         deadline: "2021/7/28"
-    },{
+    }, {
         task: "数学のレポートを滅する",
         is_finished: true,
         deadline: "2021/7/28"
-    },{
+    }, {
         task: "数学のレポートを滅する",
         is_finished: true,
         deadline: "2021/7/28"
-    },{
+    }, {
         task: "数学のレポートを滅する",
         is_finished: true,
         deadline: "2021/7/28"

@@ -7,6 +7,7 @@ import {Ashamed} from "./components/Ashamed";
 import {useDispatch, useSelector} from "react-redux";
 import taskSlice, {Task, TaskState} from "./state/Task";
 import {Form} from './components/Form';
+import {Link} from 'react-router-dom'
 
 const Toppage = () => {
     return (
@@ -30,16 +31,24 @@ const Toppage = () => {
 }
 
 const PublicPage = () => {
-    
+
     const taskState = useSelector((state: { taskState: TaskState }) => state).taskState
-    
+
     return (
         <div className="name-page">
             <h1>タスクが終わらなかった人達の恥ずかしエピソード</h1>
             {
-                taskState.progress > 0.3 ? <Ashamed message={"私は昨日、舌を噛みました"}/> : <div></div>
+                taskState.progress < 0.6 ?
+                    <div>
+                        <Ashamed message={"私は昨日、舌を噛みました"}/>
+                        <Ashamed message={"私は昨日、舌を噛みました"}/>
+                        <Ashamed message={"私は昨日、舌を噛みました"}/>
+                        <Ashamed message={"私は昨日、舌を噛みました"}/>
+                    </div> : <div></div>
             }
-        </div>            
+            <Link to={"/edit/todo"}>Todoリストを編集する</Link>
+        </div>
+
     );
 }
 
@@ -93,6 +102,7 @@ const TodoPage = () => {
                     }
                 )
             }
+            <Link to={"/public"}>皆の恥ずかしエピソードを見に行く</Link>
         </div>
     )
 }
