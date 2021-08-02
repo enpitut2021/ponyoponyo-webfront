@@ -21,27 +21,27 @@ export const initialState: TaskState = {
         task: "数学のレポートを滅する",
         is_finished: true,
         deadline: "2021/7/28",
-        task_id: 0
+        task_id: 1
     }, {
         task: "数学のレポートを滅する",
         is_finished: true,
         deadline: "2021/7/28",
-        task_id: 0
+        task_id: 2
     }, {
         task: "数学のレポートを滅する",
         is_finished: true,
         deadline: "2021/7/28",
-        task_id: 0
+        task_id: 3
     }, {
         task: "数学のレポートを滅する",
         is_finished: true,
         deadline: "2021/7/28",
-        task_id: 0
+        task_id: 4
     }, {
         task: "数学のレポートを滅する",
         is_finished: true,
         deadline: "2021/7/28",
-        task_id: 0
+        task_id: 5
     },],
     input_value: "",
     progress: 0
@@ -57,8 +57,20 @@ const taskSlice = createSlice({
         //アクションはチェックボックスの値を入れる
         //チェックボックスにチェックが付く・・・true
         //チェックボックスにチェックが付かない・・・false
-        notifyChangeTaskState: (state, action: PayloadAction<boolean>) => ({
-            ...state, is_finished: action.payload
+        notifyChangeTaskState: (state, action: PayloadAction<number>) => ({
+            ...state,
+            tasks: [...state.tasks.map((data: Task, index: number) => {
+                let flag
+                if (data.task_id === action.payload) flag = !data.is_finished;
+                else flag = data.is_finished
+                return {
+                    task_id: data.task_id,
+                    is_finished: flag,
+                    task: data.task,
+                    deadline: data.deadline
+                }
+                // return data
+            })]
         }),
         notifyChangeInputValue: (state, action: PayloadAction<string>) => ({
             ...state, input_value: action.payload
@@ -69,7 +81,6 @@ const taskSlice = createSlice({
         notifyChangeProgress: (state, action: PayloadAction<number>) => ({
             ...state, progress: action.payload
         })
-
     }
 })
 

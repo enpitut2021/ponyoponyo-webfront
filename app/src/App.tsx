@@ -79,7 +79,8 @@ const TodoPage = () => {
                     let p: Task = {
                         task: taskState.input_value,
                         is_finished: false,
-                        deadline: "2021/7/28"
+                        deadline: "2021/7/28",
+                        task_id: -1
                     }
                     dispatch(taskSlice.actions.notifyAddNewTask(p))
                     dispatch(taskSlice.actions.notifyChangeInputValue(""))
@@ -90,14 +91,16 @@ const TodoPage = () => {
                 taskState.tasks.map(
                     (value: Task, index: number) => {
                         return (
-                            <Todo task={value.task} is_finished={value.is_finished} onChange={() => {
-                                dispatch(taskSlice.actions.notifyChangeTaskState(!value.is_finished))
-                                const tmpArray = taskState.tasks.filter(task => task.is_finished === true);
-                                var taskNum = taskState.tasks.length
-                                var progressNum = tmpArray.length
-                                var done = progressNum / taskNum
-                                dispatch(taskSlice.actions.notifyChangeProgress(done))
-                            }}/>
+                            <Todo task={value.task} is_finished={value.is_finished} task_id={value.task_id}
+                                  onChange={() => {
+                                      dispatch(taskSlice.actions.notifyChangeTaskState(value.task_id))
+                                      console.log(value.task_id)
+                                      const tmpArray = taskState.tasks.filter(task => task.is_finished === true);
+                                      var taskNum = taskState.tasks.length
+                                      var progressNum = tmpArray.length
+                                      var done = progressNum / taskNum
+                                      dispatch(taskSlice.actions.notifyChangeProgress(done))
+                                  }}/>
                         )
                     }
                 )
