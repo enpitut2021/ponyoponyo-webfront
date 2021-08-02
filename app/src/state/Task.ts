@@ -10,19 +10,19 @@ export type Task = {
 
 //モデル
 export type TaskState = {
-    tasks:Task[]
+    tasks: Task[]
     input_value: string,
     progress: number
 }
 
 //モデルの初期値
 export const initialState: TaskState = {
-    tasks:[{
+    tasks: [{
         task: "数学のレポートを滅する",
         is_finished: false,
         deadline: "2021/7/28"
     }],
-    input_value:"",
+    input_value: "",
     progress: 0
 }
 
@@ -38,14 +38,14 @@ const taskSlice = createSlice({
         //チェックボックスにチェックが付かない・・・false
         notifyChangeTaskState: (state, action: PayloadAction<boolean>) => ({
             ...state, is_finished: action.payload
-         }), 
+        }),
         notifyChangeInputValue: (state, action: PayloadAction<string>) => ({
             ...state, input_value: action.payload
-         }),
+        }),
         notifyAddNewTask: (state, action: PayloadAction<Task>) => ({
             ...state, tasks: [...state.tasks, action.payload]
-         }),
-        notifyChangeProgress: (state, action:PayloadAction<number>) => ({
+        }),
+        notifyChangeProgress: (state, action: PayloadAction<number>) => ({
             ...state, progress: action.payload
         })
 

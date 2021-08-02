@@ -6,7 +6,7 @@ import {Todo} from "./components/Todo";
 import {Ashamed} from "./components/Ashamed";
 import {useDispatch, useSelector} from "react-redux";
 import taskSlice, {Task, TaskState} from "./state/Task";
-import { Form } from './components/Form';
+import {Form} from './components/Form';
 
 const Toppage = () => {
     return (
@@ -51,44 +51,45 @@ const TodoPage = () => {
             <h1>
                 This is todo page!
             </h1>
-            <Form InputValue={taskState.input_value} onChangeValue={(e : React.ChangeEvent<HTMLInputElement>)=>{
+            <Form InputValue={taskState.input_value} onChangeValue={(e: React.ChangeEvent<HTMLInputElement>) => {
                 let a = e.target.value
                 dispatch(taskSlice.actions.notifyChangeInputValue(a))
                 console.log(a)
-            }} onClick={()=>{
-                if(taskState.input_value.length!==0
-                    ){
-                        const tmpArray = taskState.tasks.filter(task => task.is_finished === true);
-                        var taskNum = taskState.tasks.length+1
-                        var progressNum = tmpArray.length
-                        var done = progressNum / taskNum
-                        dispatch(taskSlice.actions.notifyChangeProgress(done))
+            }} onClick={() => {
+                if (taskState.input_value.length !== 0
+                ) {
+                    const tmpArray = taskState.tasks.filter(task => task.is_finished === true);
+                    var taskNum = taskState.tasks.length + 1
+                    var progressNum = tmpArray.length
+                    var done = progressNum / taskNum
+                    dispatch(taskSlice.actions.notifyChangeProgress(done))
 
-                let p :Task= {
-                    task: taskState.input_value,
-                    is_finished: false,
-                    deadline: "2021/7/28"
+                    let p: Task = {
+                        task: taskState.input_value,
+                        is_finished: false,
+                        deadline: "2021/7/28"
+                    }
+                    dispatch(taskSlice.actions.notifyAddNewTask(p))
+                    dispatch(taskSlice.actions.notifyChangeInputValue(""))
                 }
-                dispatch(taskSlice.actions.notifyAddNewTask(p))
-                dispatch(taskSlice.actions.notifyChangeInputValue(""))}
 
             }}/>
-                        {
-                                        taskState.tasks.map(
-                                            (value:Task,index:number)=>{
-                                                return (
-                                                    <Todo task={value.task} is_finished={value.is_finished} onChange={() => {
-                                                        dispatch(taskSlice.actions.notifyChangeTaskState(!value.is_finished))
-                                                        const tmpArray = taskState.tasks.filter(task => task.is_finished === true);
-                                                        var taskNum = taskState.tasks.length
-                                                        var progressNum = tmpArray.length
-                                                        var done = progressNum / taskNum
-                                                        dispatch(taskSlice.actions.notifyChangeProgress(done))
-                                                    }}/>
-                                                )
-                                            }
-                                        )                                
-                        }
+            {
+                taskState.tasks.map(
+                    (value: Task, index: number) => {
+                        return (
+                            <Todo task={value.task} is_finished={value.is_finished} onChange={() => {
+                                dispatch(taskSlice.actions.notifyChangeTaskState(!value.is_finished))
+                                const tmpArray = taskState.tasks.filter(task => task.is_finished === true);
+                                var taskNum = taskState.tasks.length
+                                var progressNum = tmpArray.length
+                                var done = progressNum / taskNum
+                                dispatch(taskSlice.actions.notifyChangeProgress(done))
+                            }}/>
+                        )
+                    }
+                )
+            }
         </div>
     )
 }
