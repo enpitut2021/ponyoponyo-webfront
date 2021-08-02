@@ -58,6 +58,12 @@ const TodoPage = () => {
             }} onClick={()=>{
                 if(taskState.input_value.length!==0
                     ){
+                        const tmpArray = taskState.tasks.filter(task => task.is_finished === true);
+                        var taskNum = taskState.tasks.length+1
+                        var progressNum = tmpArray.length
+                        var done = progressNum / taskNum
+                        dispatch(taskSlice.actions.notifyChangeProgress(done))
+
                 let p :Task= {
                     task: taskState.input_value,
                     is_finished: false,
