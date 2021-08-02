@@ -6,7 +6,8 @@ import React, {ChangeEvent} from "react";
 interface OwnProps {
     task: string
     is_finished: boolean
-    onChange(event: ChangeEvent): void;
+    onChange(event: ChangeEvent): void
+    task_id: number;
 }
 
 type Props = OwnProps
