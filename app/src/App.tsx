@@ -73,6 +73,11 @@ const TodoPage = () => {
                                                 return (
                                                     <Todo task={value.task} is_finished={value.is_finished} onChange={() => {
                                                         dispatch(taskSlice.actions.notifyChangeTaskState(!value.is_finished))
+                                                        const tmpArray = taskState.tasks.filter(task => task.is_finished === true);
+                                                        var taskNum = taskState.tasks.length
+                                                        var progressNum = tmpArray.length
+                                                        var done = progressNum / taskNum
+                                                        dispatch(taskSlice.actions.notifyChangeProgress(done))
                                                     }}/>
                                                 )
                                             }

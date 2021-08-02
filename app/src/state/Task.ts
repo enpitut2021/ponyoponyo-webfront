@@ -12,6 +12,7 @@ export type Task = {
 export type TaskState = {
     tasks:Task[]
     input_value: string,
+    progress: number
 }
 
 //モデルの初期値
@@ -21,7 +22,8 @@ export const initialState: TaskState = {
         is_finished: false,
         deadline: "2021/7/28"
     }],
-    input_value:""
+    input_value:"",
+    progress: 0
 }
 
 //モデルから値の保存場所（State）を作る
@@ -42,6 +44,9 @@ const taskSlice = createSlice({
          }),
         notifyAddNewTask: (state, action: PayloadAction<Task>) => ({
             ...state, tasks: [...state.tasks, action.payload]
+         }),
+        notifyChangeProgress: (state, action:PayloadAction<number>) => ({
+            ...state, progress: action.payload
         })
 
     }
