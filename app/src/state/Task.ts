@@ -18,31 +18,11 @@ export type TaskState = {
 //モデルの初期値
 export const initialState: TaskState = {
     tasks: [{
-        task: "数学のレポートを滅する",
-        is_finished: true,
+        task: "多〇量解析のレポートをボコボコにする",
+        is_finished: false,
         deadline: "2021/7/28",
         task_id: 1
-    }, {
-        task: "数学のレポートを滅する",
-        is_finished: true,
-        deadline: "2021/7/28",
-        task_id: 2
-    }, {
-        task: "数学のレポートを滅する",
-        is_finished: true,
-        deadline: "2021/7/28",
-        task_id: 3
-    }, {
-        task: "数学のレポートを滅する",
-        is_finished: true,
-        deadline: "2021/7/28",
-        task_id: 4
-    }, {
-        task: "数学のレポートを滅する",
-        is_finished: true,
-        deadline: "2021/7/28",
-        task_id: 5
-    },],
+    }],
     input_value: "",
     progress: 0
 }
