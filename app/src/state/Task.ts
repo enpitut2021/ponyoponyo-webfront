@@ -19,9 +19,25 @@ export type TaskState = {
 export const initialState: TaskState = {
     tasks: [{
         task: "数学のレポートを滅する",
-        is_finished: false,
+        is_finished: true,
         deadline: "2021/7/28"
-    }],
+    },{
+        task: "数学のレポートを滅する",
+        is_finished: true,
+        deadline: "2021/7/28"
+    },{
+        task: "数学のレポートを滅する",
+        is_finished: true,
+        deadline: "2021/7/28"
+    },{
+        task: "数学のレポートを滅する",
+        is_finished: true,
+        deadline: "2021/7/28"
+    },{
+        task: "数学のレポートを滅する",
+        is_finished: true,
+        deadline: "2021/7/28"
+    },],
     input_value: "",
     progress: 0
 }

@@ -30,13 +30,16 @@ const Toppage = () => {
 }
 
 const PublicPage = () => {
+    
+    const taskState = useSelector((state: { taskState: TaskState }) => state).taskState
+    
     return (
         <div className="name-page">
             <h1>タスクが終わらなかった人達の恥ずかしエピソード</h1>
-            <Ashamed message={"私は昨日、舌を噛みました"}/>
-            <Ashamed message={"私は昨日、足を切りました"}/>
-            <Ashamed message={"私は昨日、髪の毛が無くなりました"}/>
-        </div>
+            {
+                taskState.progress > 0.3 ? <Ashamed message={"私は昨日、舌を噛みました"}/> : <div></div>
+            }
+        </div>            
     );
 }
 
