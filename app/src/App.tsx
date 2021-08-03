@@ -8,6 +8,8 @@ import {useDispatch, useSelector} from "react-redux";
 import taskSlice, {Task, TaskState} from "./state/Task";
 import {Form} from './components/Form';
 import {Link} from 'react-router-dom'
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 const Toppage = () => {
     return (
@@ -32,6 +34,20 @@ const Toppage = () => {
 
 const PublicPage = () => {
     const taskState = useSelector((state: { taskState: TaskState }) => state).taskState
+    
+    const initialDate = new Date()
+    const [startDate, setStartDate] = useState(initialDate)
+    const handleChange = (date) => {
+      setStartDate(date)
+    }
+  
+    return (
+      <DatePicker
+        selected={startDate}
+        onChange={handleChange}
+      />
+    )
+
     return (
         <div className="name-page">
             <h1>タスクが終わらなかった人達の恥ずかしエピソード</h1>
