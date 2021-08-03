@@ -35,19 +35,7 @@ const Toppage = () => {
 
 const PublicPage = () => {
     const taskState = useSelector((state: { taskState: TaskState }) => state).taskState
-    
-    const initialDate = new Date()
-    const [startDate, setStartDate] = useState(initialDate)
-    const handleChange = (date) => {
-      setStartDate(date)
-    }
-  
-    return (
-      <DatePicker
-        selected={startDate}
-        onChange={handleChange}
-      />
-    )
+
 
     return (
         <div className="name-page">
@@ -75,11 +63,14 @@ const TodoPage = () => {
             <h1>
                 This is todo page!
             </h1>
-            <Form InputValue={taskState.input_value} onChangeCalenderValue={(e: React.ChangeEvent<HTMLInputElement>) => {
-                //todo
-            }}
+            <Form InputValue={taskState.input_value} 
+                  onChangeCalenderValue={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      let b = e.target.value
+                      dispatch(taskSlice.actions.notifyGetDdl(b))
+                      console.log(b)
+                }}
                   deadline={
-                      taskState.input_deadline_value //Todo：ここを直す
+                      taskState.input_deadline_value 
                   }
                   onChangeValue={(e: React.ChangeEvent<HTMLInputElement>) => {
                       let a = e.target.value
@@ -96,7 +87,7 @@ const TodoPage = () => {
                     let p: Task = {
                         task: taskState.input_value,
                         is_finished: false,
-                        deadline: "2021/7/28",
+                        deadline: taskState.input_deadline_value,
                         task_id: taskNum
                     }
                     dispatch(taskSlice.actions.notifyChangeProgress(done))
@@ -109,7 +100,7 @@ const TodoPage = () => {
                 taskState.tasks.map(
                     (value: Task, index: number) => {
                         return (
-                            <Todo task={value.task} is_finished={value.is_finished} task_id={value.task_id}
+                            <Todo task={value.task} is_finished={value.is_finished} task_id={value.task_id} deadline={value.deadline}
                                   onChange={() => {
                                       dispatch(taskSlice.actions.notifyChangeTaskState(value.task_id))
 
