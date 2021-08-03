@@ -26,7 +26,7 @@ export const initialState: TaskState = {
         task_id: 1
     }],
     input_value: "",
-    progress: 0 ,
+    progress: 0,
     input_deadline_value: "××××/××/××",
 }
 
