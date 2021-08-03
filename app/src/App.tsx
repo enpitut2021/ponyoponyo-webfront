@@ -8,7 +8,9 @@ import {useDispatch, useSelector} from "react-redux";
 import taskSlice, {Task, TaskState} from "./state/Task";
 import {Form} from './components/Form';
 import {Link} from 'react-router-dom'
+import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+
 
 const Toppage = () => {
     return (
@@ -33,6 +35,19 @@ const Toppage = () => {
 
 const PublicPage = () => {
     const taskState = useSelector((state: { taskState: TaskState }) => state).taskState
+    
+    const initialDate = new Date()
+    const [startDate, setStartDate] = useState(initialDate)
+    const handleChange = (date) => {
+      setStartDate(date)
+    }
+  
+    return (
+      <DatePicker
+        selected={startDate}
+        onChange={handleChange}
+      />
+    )
 
     return (
         <div className="name-page">
@@ -60,12 +75,17 @@ const TodoPage = () => {
             <h1>
                 This is todo page!
             </h1>
-            <Form InputValue={taskState.input_value} onChangeValue={(e: React.ChangeEvent<HTMLInputElement>) => {
-                let a = e.target.value
-                dispatch(taskSlice.actions.notifyChangeInputValue(a))
-
-                console.log(a)
-            }} onClick={() => {
+            <Form InputValue={taskState.input_value} onChangeCalenderValue={(e: React.ChangeEvent<HTMLInputElement>) => {
+                //todo
+            }}
+                  deadline={
+                      taskState.input_deadline_value //Todo：ここを直す
+                  }
+                  onChangeValue={(e: React.ChangeEvent<HTMLInputElement>) => {
+                      let a = e.target.value
+                      dispatch(taskSlice.actions.notifyChangeInputValue(a))
+                      console.log(a)
+                  }} onClick={() => {
                 if (taskState.input_value.length !== 0
                 ) {
                     const tmpArray = taskState.tasks.filter(task => task.is_finished === true);

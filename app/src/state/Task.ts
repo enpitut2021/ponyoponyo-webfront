@@ -13,6 +13,7 @@ export type TaskState = {
     tasks: Task[]
     input_value: string,
     progress: number,
+    input_deadline_value: string,
 }
 
 //モデルの初期値
@@ -24,7 +25,8 @@ export const initialState: TaskState = {
         task_id: 1
     }],
     input_value: "",
-    progress: 0
+    progress: 0 ,
+    input_deadline_value: "××××/××/××",
 }
 
 //モデルから値の保存場所（State）を作る
@@ -60,6 +62,9 @@ const taskSlice = createSlice({
         }),
         notifyChangeProgress: (state, action: PayloadAction<number>) => ({
             ...state, progress: action.payload
+        }),
+        notifyGetDdl: (state, action: PayloadAction<string>) => ({
+            ...state, input_deadline_value: action.payload
         })
     }
 })
