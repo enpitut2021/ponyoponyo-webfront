@@ -7,7 +7,8 @@ interface OwnProps {
     task: string
     is_finished: boolean
     onChange(event: ChangeEvent): void
-    task_id: number;
+    task_id: number
+    deadline: string;
 }
 
 type Props = OwnProps
@@ -23,7 +24,7 @@ export const Todo: React.FC<Props> = props => {
                 //値が変わるときに呼ばれる関数
                 onChange={event => props.onChange(event)}
             />
-            <label className="todo-label" htmlFor="todo-0">{props.task}</label>
+            <label className="todo-label" htmlFor="todo-0">{props.task}&emsp;&emsp;&emsp;{props.deadline}</label>
         </div>
     );
 }
