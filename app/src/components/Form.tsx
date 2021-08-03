@@ -3,9 +3,9 @@ import React, {ChangeEvent} from "react";
 
 interface OwnProps {
     InputValue: string
-
+    deadline : string
     onChangeValue(event: React.ChangeEvent<HTMLInputElement>): void;
-
+    onChangeCalenderValue(event:React.ChangeEvent<HTMLInputElement>):void;
     onClick(): void;
 }
 
@@ -20,8 +20,8 @@ export const Form: React.FC<Props> = props => {
             />
             <input
                 type="date"
-                onChange={TODO}
-                value={TODO}
+                onChange={props.onChangeCalenderValue}
+                value={props.deadline}
             />
             <button
                 onClick={props.onClick}
