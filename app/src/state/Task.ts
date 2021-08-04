@@ -3,7 +3,8 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export type Task = {
     task: string,
-    deadline: string,
+    deadline_date: string,
+    deadline_time: string
     is_finished: boolean,
     task_id: number,
 }
@@ -13,7 +14,8 @@ export type TaskState = {
     tasks: Task[]
     input_value: string,
     progress: number,
-    input_deadline_value: string,
+    input_deadline_value_date: string,
+    input_deadline_value_time: string,
 }
 
 
@@ -22,12 +24,14 @@ export const initialState: TaskState = {
     tasks: [{
         task: "多〇量解析のレポートをボコボコにする",
         is_finished: false,
-        deadline: "2021/7/28",
+        deadline_date: "2021/7/28",
+        deadline_time: "08:00",
         task_id: 1
     }],
     input_value: "",
     progress: 0 ,
-    input_deadline_value: "××××/××/××",
+    input_deadline_value_date: "××××/××/××",
+    input_deadline_value_time: "××:××",
 }
 
 //モデルから値の保存場所（State）を作る
@@ -50,7 +54,9 @@ const taskSlice = createSlice({
                     task_id: data.task_id,
                     is_finished: flag,
                     task: data.task,
-                    deadline: data.deadline
+                    deadline_date: data.deadline_date,
+                    deadline_time: data.deadline_time,
+
                 }
                 // return data
             })]
@@ -64,8 +70,11 @@ const taskSlice = createSlice({
         notifyChangeProgress: (state, action: PayloadAction<number>) => ({
             ...state, progress: action.payload
         }),
-        notifyGetDdl: (state, action: PayloadAction<string>) => ({
-            ...state, input_deadline_value: action.payload
+        notifyGetDdlDate: (state, action: PayloadAction<string>) => ({
+            ...state, input_deadline_value_date: action.payload
+        }),
+        notifyGetDdlTime: (state, action: PayloadAction<string>) => ({
+            ...state, input_deadline_value_time: action.payload
         })
     }
 })
